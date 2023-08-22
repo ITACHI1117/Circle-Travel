@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Plan from "./screens/Onboarding_Screens/Plan";
 import { Appearance, StatusBar } from "react-native";
 import { useTheme } from "@react-navigation/native";
+import SignIn from "./screens/Registration/SignIn";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Navigator = () => {
   const Stack = createNativeStackNavigator();
@@ -44,22 +46,39 @@ const Navigator = () => {
   //  Getting themes
   const { colors } = useTheme();
 
+  const [firstLaunch, setFirstLaunch] = React.useState(null);
+  React.useEffect(() => {
+    async function setData() {
+      const appData = await AsyncStorage.getItem("appLaunched");
+      if (appData == null) {
+        setFirstLaunch(true);
+        AsyncStorage.setItem("appLaunched", "false");
+      } else {
+        setFirstLaunch(false);
+      }
+    }
+    setData();
+  }, []);
   return (
-    <NavigationContainer theme={colorScheme === "dark" ? dark : light}>
-      <StatusBar animated={true} barStyle={colors.text} />
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Plan"
-          component={Plan}
-          options={{ title: null, headerShown: false }}
-        />
-        {/* <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ title: "Welcome" }}
-        /> */}
-      </Stack.Navigator>
-    </NavigationContainer>
+    firstLaunch != null && (
+      <NavigationContainer theme={colorScheme === "dark" ? dark : light}>
+        <StatusBar animated={true} barStyle={colors.text} />
+        <Stack.Navigator>
+          {firstLaunch && (
+            <Stack.Screen
+              name="Plan"
+              component={Plan}
+              options={{ title: null, headerShown: false }}
+            />
+          )}
+          <Stack.Screen
+            name="SignIn"
+            component={SignIn}
+            options={{ title: null, headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    )
   );
 };
 

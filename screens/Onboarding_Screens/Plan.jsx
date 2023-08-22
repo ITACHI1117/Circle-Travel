@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Animated,
   ScrollView,
@@ -9,48 +9,69 @@ import { View, Text, StyleSheet, Image, StatusBar } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTheme } from "@react-navigation/native";
 
-const Plan = () => {
+const Plan = ({ navigation }) => {
   const { colors } = useTheme();
-  const images = [
-    "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=465&q=80",
-    "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDMHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=465&q=80",
-    "../../assets/undraw_Traveling_yhxq.png",
-  ];
+  const scrollViewRef = useRef(null);
+  const [update, setUpdate] = useState(0);
 
   const data = [
     {
       id: 1,
-      img: "../../assets/undraw_adventure_map_hnin.png",
+      img: require("../../assets/Traveling.png"),
     },
     {
       id: 2,
-      img: "../../assets/undraw_Relaxation_re_ohkx.png",
+      img: require("../../assets/adventure.png"),
     },
     {
       id: 3,
-      img: "../../assets/undraw_Traveling_yhxq.png",
+      img: require("../../assets/Relaxation.png"),
     },
   ];
 
   const scrollX = useRef(new Animated.Value(0)).current;
 
-  const { width: windowWidth } = useWindowDimensions();
+  const scroll = () => {
+    if (update <= 1) {
+      setUpdate(update + 1);
+    }
+    console.log(windowWidth);
+    if (update === 0) {
+      scrollViewRef.current?.scrollTo({
+        x: windowWidth + 1,
+        animated: true,
+      });
+    }
+    if (update === 1) {
+      scrollViewRef.current?.scrollTo({
+        x: windowWidth + windowWidth,
+        animated: true,
+      });
+    }
+    console.log(update);
+  };
 
+  const scrollEnd = () => {
+    setUpdate(2);
+    scrollViewRef.current?.scrollToEnd({ animated: true });
+  };
+
+  const { width: windowWidth } = useWindowDimensions();
+  img = "adventure.png";
   return (
-    <SafeAreaView
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
+    <SafeAreaView>
       <View style={styles.backView}>
         <View style={styles.header}>
-          <TouchableOpacity>
-            <Text style={{ fontSize: 20, color: colors.text }}>Skip</Text>
+          <TouchableOpacity onPress={() => scrollEnd()}>
+            <Text style={{ fontSize: 20, color: colors.text, paddingTop: 20 }}>
+              Skip
+            </Text>
           </TouchableOpacity>
         </View>
         <ScrollView
+          ref={scrollViewRef}
+          scrollEnabled={false}
+          centerContent={true}
           horizontal={true}
           pagingEnabled
           showsHorizontalScrollIndicator={false}
@@ -59,19 +80,15 @@ const Plan = () => {
             alignItems: "center",
             justifyContent: "space-around",
             width: windowWidth * 3,
-            height: 300,
-            backgroundColor: "green",
+            height: "100%",
+
             marginTop: 30,
           }}
-          style={{
-            display: "flex",
-            width: windowWidth,
-          }}
         >
-          {images.map((image) => {
+          {data.map((image) => {
             return (
               <View
-                key={image}
+                key={image.id}
                 style={{
                   alignItems: "center",
                   justifyContent: "center",
@@ -79,15 +96,9 @@ const Plan = () => {
                   width: "40%",
                   height: "100%",
                   margin: 0,
-                  backgroundColor: "red",
                 }}
               >
-                <Image
-                  style={{ width: 250, height: 150 }}
-                  source={{
-                    uri: "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=465&q=80",
-                  }}
-                />
+                <Image style={{ width: 250, height: 150 }} source={image.img} />
                 <Text
                   style={{
                     paddingTop: 25,
@@ -123,18 +134,35 @@ const Plan = () => {
             paddingTop: 90,
           }}
         >
-          <TouchableOpacity
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#0094FF",
-              width: "90%",
-              height: 50,
-            }}
-          >
-            <Text style={{ color: "white", fontSize: 20 }}>Next</Text>
-          </TouchableOpacity>
+          {update < 2 ? (
+            <TouchableOpacity
+              onPress={() => scroll()}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#0094FF",
+                width: "90%",
+                height: 50,
+              }}
+            >
+              <Text style={{ color: "white", fontSize: 20 }}>Next</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              onPress={() => navigation.navigate("SignIn")}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#0094FF",
+                width: "90%",
+                height: 50,
+              }}
+            >
+              <Text style={{ color: "white", fontSize: 20 }}>Get Started</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </SafeAreaView>
@@ -147,10 +175,10 @@ const styles = StyleSheet.create({
   backView: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
     backgroundColor: "transparent",
     width: "100%",
-    height: "100%",
+    height: "99%",
   },
   header: {
     width: "100%",
