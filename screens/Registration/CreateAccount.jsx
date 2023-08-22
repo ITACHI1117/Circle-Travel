@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   TouchableWithoutFeedback,
+  ScrollView,
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -18,55 +19,58 @@ const CreateAccount = ({ navigation }) => {
   return (
     <SafeAreaView>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <KeyboardAvoidingView
-          enabled={true}
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          // style={{ flex: 1, width: "100%" }}
-        >
-          <View
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "100%",
-            }}
+        <ScrollView style={{ height: "100%" }}>
+          <KeyboardAvoidingView
+            enabled={true}
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            // style={{ flex: 1, width: "100%" }}
           >
-            <Image
-              style={{ width: 320, height: 230 }}
-              source={require("../../assets/adventure.png")}
-            />
-
-            <Text
+            <View
               style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%",
                 paddingTop: 30,
-                fontSize: 30,
-                fontWeight: 500,
-                color: colors.text,
-                paddingBottom: 20,
               }}
             >
-              Sign In
-            </Text>
-            <TextInput style={styles.textInput} placeholder="Your email" />
-            <TextInput style={styles.textInput} placeholder="Your password" />
-            <TouchableOpacity style={styles.button}>
-              <Text style={{ color: "white", fontSize: 18 }}>Sign in</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{ paddingTop: 20 }}>
-              <Text style={{ color: "#959598", fontSize: 20 }}>
-                Forgot Password?
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{ paddingTop: 20 }}>
+              <Image
+                style={{ width: 320, height: 230 }}
+                source={require("../../assets/signin.png")}
+              />
+
               <Text
-                style={{ color: "#959598", fontSize: 20, paddingBottom: 20 }}
+                style={{
+                  paddingTop: 30,
+                  fontSize: 30,
+                  fontWeight: 500,
+                  color: colors.text,
+                  paddingBottom: 20,
+                }}
               >
-                Dont have an Account?
-                <Text style={{ color: "#2DA6FF" }}>Sign Up</Text>
+                Create Account
               </Text>
-            </TouchableOpacity>
-          </View>
-        </KeyboardAvoidingView>
+              <TextInput style={styles.textInput} placeholder="Your name" />
+              <TextInput style={styles.textInput} placeholder="Your email" />
+              <TextInput style={styles.textInput} placeholder="Your password" />
+              <TextInput style={styles.textInput} placeholder="Re-password" />
+              <TouchableOpacity style={styles.button}>
+                <Text style={{ color: "white", fontSize: 18 }}>Register</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{ paddingTop: 20 }}
+                onPress={() => navigation.goBack()}
+              >
+                <Text
+                  style={{ color: "#959598", fontSize: 20, paddingBottom: 20 }}
+                >
+                  already have an account?
+                  <Text style={{ color: "#2DA6FF" }}>Sign In</Text>
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </KeyboardAvoidingView>
+        </ScrollView>
       </TouchableWithoutFeedback>
     </SafeAreaView>
   );

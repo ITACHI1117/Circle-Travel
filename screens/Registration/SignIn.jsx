@@ -33,7 +33,7 @@ const SignIn = ({ navigation }) => {
           >
             <Image
               style={{ width: 320, height: 230 }}
-              source={require("../../assets/adventure.png")}
+              source={require("../../assets/createAccount.png")}
             />
 
             <Text
@@ -49,18 +49,24 @@ const SignIn = ({ navigation }) => {
             </Text>
             <TextInput style={styles.textInput} placeholder="Your email" />
             <TextInput style={styles.textInput} placeholder="Your password" />
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.replace("Home")}
+            >
               <Text style={{ color: "white", fontSize: 18 }}>Sign in</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{ paddingTop: 20 }}>
-              <Text
-                style={{ color: "#959598", fontSize: 20 }}
-                onPress={() => navigation.navigate("CreateAccount")}
-              >
+            <TouchableOpacity
+              style={{ paddingTop: 20 }}
+              onPress={() => navigation.navigate("ResetPassword")}
+            >
+              <Text style={{ color: "#959598", fontSize: 20 }}>
                 Forgot Password?
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{ paddingTop: 20 }}>
+            <TouchableOpacity
+              style={{ paddingTop: 20 }}
+              onPress={() => navigation.navigate("CreateAccount")}
+            >
               <Text
                 style={{ color: "#959598", fontSize: 20, paddingBottom: 20 }}
               >

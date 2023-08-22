@@ -7,6 +7,10 @@ import { useTheme } from "@react-navigation/native";
 import SignIn from "./screens/Registration/SignIn";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CreateAccount from "./screens/Registration/CreateAccount";
+import ResetPassword from "./screens/Registration/ResetPassword";
+import Confirmation from "./screens/Registration/Confirmation";
+import NewPassword from "./screens/Registration/NewPassword";
+import Home from "./screens/Home/Home";
 
 const Navigator = () => {
   const Stack = createNativeStackNavigator();
@@ -80,6 +84,26 @@ const Navigator = () => {
           <Stack.Screen
             name="CreateAccount"
             component={CreateAccount}
+            options={{ title: null, headerShown: false }}
+          />
+          <Stack.Screen
+            name="ResetPassword"
+            component={ResetPassword}
+            options={{ title: null, headerShown: false }}
+          />
+          <Stack.Screen
+            name="Confirmation"
+            component={Confirmation}
+            options={{ title: null, headerShown: false }}
+          />
+          <Stack.Screen
+            name="NewPassword"
+            component={NewPassword}
+            options={{ title: null, headerShown: false }}
+          />
+          <Stack.Screen
+            name="Home"
+            component={Home}
             options={{ title: null, headerShown: false }}
           />
         </Stack.Navigator>
