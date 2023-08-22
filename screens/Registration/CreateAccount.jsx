@@ -13,7 +13,7 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTheme } from "@react-navigation/native";
 
-const SignIn = ({ navigation }) => {
+const CreateAccount = ({ navigation }) => {
   const { colors } = useTheme();
   return (
     <SafeAreaView>
@@ -53,10 +53,7 @@ const SignIn = ({ navigation }) => {
               <Text style={{ color: "white", fontSize: 18 }}>Sign in</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{ paddingTop: 20 }}>
-              <Text
-                style={{ color: "#959598", fontSize: 20 }}
-                onPress={() => navigation.navigate("CreateAccount")}
-              >
+              <Text style={{ color: "#959598", fontSize: 20 }}>
                 Forgot Password?
               </Text>
             </TouchableOpacity>
@@ -75,7 +72,7 @@ const SignIn = ({ navigation }) => {
   );
 };
 
-export default SignIn;
+export default CreateAccount;
 
 const styles = StyleSheet.create({
   textInput: {

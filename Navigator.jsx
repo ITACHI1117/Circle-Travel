@@ -6,6 +6,7 @@ import { Appearance, StatusBar } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import SignIn from "./screens/Registration/SignIn";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import CreateAccount from "./screens/Registration/CreateAccount";
 
 const Navigator = () => {
   const Stack = createNativeStackNavigator();
@@ -74,6 +75,11 @@ const Navigator = () => {
           <Stack.Screen
             name="SignIn"
             component={SignIn}
+            options={{ title: null, headerShown: false }}
+          />
+          <Stack.Screen
+            name="CreateAccount"
+            component={CreateAccount}
             options={{ title: null, headerShown: false }}
           />
         </Stack.Navigator>
