@@ -150,7 +150,7 @@ const Plan = ({ navigation }) => {
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
-              onPress={() => navigation.navigate("SignIn")}
+              onPress={() => navigation.replace("SignIn")}
               style={{
                 display: "flex",
                 alignItems: "center",

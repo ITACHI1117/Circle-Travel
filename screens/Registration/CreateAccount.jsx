@@ -19,30 +19,47 @@ const CreateAccount = ({ navigation }) => {
   return (
     <SafeAreaView>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <ScrollView style={{ height: "100%" }}>
-          <KeyboardAvoidingView
-            enabled={true}
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-            // style={{ flex: 1, width: "100%" }}
+        <KeyboardAvoidingView
+          enabled={true}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          // style={{ flex: 1, width: "100%" }}
+        >
+          <View
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100%",
+              paddingTop: 30,
+            }}
           >
-            <View
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                height: "100%",
-                paddingTop: 30,
-              }}
-            >
+            {colors.background == "white" ? (
               <Image
                 style={{ width: 320, height: 230 }}
                 source={require("../../assets/signin.png")}
               />
-
+            ) : (
+              <Image
+                style={{ width: 320, height: 230 }}
+                source={require("../../assets/signinDark.png")}
+              />
+            )}
+            <ScrollView
+              contentContainerStyle={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              style={{
+                height: "100%",
+                width: "100%",
+              }}
+              showsVerticalScrollIndicator={false}
+            >
               <Text
                 style={{
                   paddingTop: 30,
-                  fontSize: 30,
+                  fontSize: 25,
                   fontWeight: 500,
                   color: colors.text,
                   paddingBottom: 20,
@@ -50,27 +67,43 @@ const CreateAccount = ({ navigation }) => {
               >
                 Create Account
               </Text>
-              <TextInput style={styles.textInput} placeholder="Your name" />
-              <TextInput style={styles.textInput} placeholder="Your email" />
-              <TextInput style={styles.textInput} placeholder="Your password" />
-              <TextInput style={styles.textInput} placeholder="Re-password" />
+              <TextInput
+                style={[styles.textInput, { color: colors.background }]}
+                placeholderTextColor={colors.placeholder}
+                placeholder="Your name"
+              />
+              <TextInput
+                style={[styles.textInput, { color: colors.background }]}
+                placeholderTextColor={colors.placeholder}
+                placeholder="Your email"
+              />
+              <TextInput
+                style={[styles.textInput, { color: colors.background }]}
+                placeholderTextColor={colors.placeholder}
+                placeholder="Your password"
+              />
+              <TextInput
+                style={[styles.textInput, { color: colors.background }]}
+                placeholderTextColor={colors.placeholder}
+                placeholder="Re-password"
+              />
               <TouchableOpacity style={styles.button}>
-                <Text style={{ color: "white", fontSize: 18 }}>Register</Text>
+                <Text style={{ color: "white", fontSize: 15 }}>Register</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={{ paddingTop: 20 }}
                 onPress={() => navigation.goBack()}
               >
                 <Text
-                  style={{ color: "#959598", fontSize: 20, paddingBottom: 20 }}
+                  style={{ color: "#959598", fontSize: 15, paddingBottom: 20 }}
                 >
                   already have an account?
                   <Text style={{ color: "#2DA6FF" }}>Sign In</Text>
                 </Text>
               </TouchableOpacity>
-            </View>
-          </KeyboardAvoidingView>
-        </ScrollView>
+            </ScrollView>
+          </View>
+        </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
     </SafeAreaView>
   );
@@ -84,7 +117,7 @@ const styles = StyleSheet.create({
     width: "90%",
     height: 45,
     padding: 10,
-    fontSize: 18,
+    fontSize: 13,
     marginTop: 10,
     borderRadius: 3,
     color: "#959598",

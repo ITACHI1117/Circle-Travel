@@ -37,7 +37,14 @@ const Confirmation = ({ navigation }) => {
             height: "100%",
           }}
         >
-          <Text style={{ fontSize: 30, fontWeight: "600", paddingTop: 40 }}>
+          <Text
+            style={{
+              fontSize: 25,
+              fontWeight: "600",
+              paddingTop: 40,
+              color: colors.text,
+            }}
+          >
             Check your email
           </Text>
           <TouchableOpacity>
@@ -51,6 +58,7 @@ const Confirmation = ({ navigation }) => {
               paddingTop: 20,
               paddingBottom: 20,
               fontWeight: 200,
+              color: colors.text,
             }}
           >
             Enter the email address associated with your account.
@@ -60,7 +68,7 @@ const Confirmation = ({ navigation }) => {
           style={styles.button}
           onPress={() => navigation.replace("NewPassword")}
         >
-          <Text style={{ color: "white", fontSize: 18 }}>Go Back</Text>
+          <Text style={{ color: "white", fontSize: 15 }}>Go Back</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

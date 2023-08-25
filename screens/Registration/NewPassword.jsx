@@ -35,30 +35,43 @@ const NewPassword = ({ navigation }) => {
                 width: "100%",
               }}
             >
-              <Text style={{ fontSize: 30, fontWeight: "600", paddingTop: 40 }}>
+              <Text
+                style={{
+                  fontSize: 25,
+                  fontWeight: "600",
+                  paddingTop: 40,
+                  color: colors.text,
+                }}
+              >
                 Create New Password
               </Text>
               <Text
                 style={{
-                  fontSize: 20,
+                  fontSize: 18,
                   width: "70%",
                   textAlign: "center",
                   paddingTop: 20,
                   paddingBottom: 20,
+                  color: colors.text,
                 }}
               >
                 Your new Password must be diffrent from previous used passwords
               </Text>
-              <TextInput style={styles.textInput} placeholder="Password" />
               <TextInput
-                style={styles.textInput}
+                style={[styles.textInput, { color: colors.background }]}
+                placeholder="Password"
+                placeholderTextColor={colors.placeholder}
+              />
+              <TextInput
+                style={[styles.textInput, { color: colors.background }]}
                 placeholder="Confirm Password"
+                placeholderTextColor={colors.placeholder}
               />
               <TouchableOpacity
                 style={styles.button}
-                onPress={() => navigation.replace("Confirmation")}
+                onPress={() => navigation.replace("SignIn")}
               >
-                <Text style={{ color: "white", fontSize: 18 }}>
+                <Text style={{ color: "white", fontSize: 15 }}>
                   Reset Password
                 </Text>
               </TouchableOpacity>
@@ -78,10 +91,9 @@ const styles = StyleSheet.create({
     width: "90%",
     height: 45,
     padding: 10,
-    fontSize: 18,
+    fontSize: 13,
     marginTop: 10,
     borderRadius: 3,
-    color: "#959598",
   },
   button: {
     display: "flex",

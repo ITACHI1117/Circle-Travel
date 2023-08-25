@@ -19,7 +19,7 @@ import { AntDesign } from "@expo/vector-icons";
 const ResetPassword = ({ navigation }) => {
   const { colors } = useTheme();
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ height: "100%" }}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView
           enabled={true}
@@ -35,7 +35,7 @@ const ResetPassword = ({ navigation }) => {
               <AntDesign
                 name="arrowleft"
                 size={28}
-                color="black"
+                color={colors.text}
                 style={{ paddingLeft: 10 }}
               />
             </TouchableOpacity>
@@ -47,26 +47,38 @@ const ResetPassword = ({ navigation }) => {
                 width: "100%",
               }}
             >
-              <Text style={{ fontSize: 30, fontWeight: "600", paddingTop: 40 }}>
+              <Text
+                style={{
+                  fontSize: 25,
+                  fontWeight: "600",
+                  paddingTop: 30,
+                  color: colors.text,
+                }}
+              >
                 Reset Password
               </Text>
               <Text
                 style={{
-                  fontSize: 25,
+                  fontSize: 20,
                   width: "70%",
                   textAlign: "center",
-                  paddingTop: 20,
+                  paddingTop: 10,
                   paddingBottom: 20,
+                  color: colors.text,
                 }}
               >
                 Enter the email address associated with your account.
               </Text>
-              <TextInput style={styles.textInput} placeholder="Your email" />
+              <TextInput
+                style={[styles.textInput, { color: colors.background }]}
+                placeholder="Your email"
+                placeholderTextColor={colors.placeholder}
+              />
               <TouchableOpacity
                 style={styles.button}
                 onPress={() => navigation.replace("Confirmation")}
               >
-                <Text style={{ color: "white", fontSize: 18 }}>Send Mail</Text>
+                <Text style={{ color: "white", fontSize: 15 }}>Send Mail</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -84,7 +96,7 @@ const styles = StyleSheet.create({
     width: "90%",
     height: 45,
     padding: 10,
-    fontSize: 18,
+    fontSize: 13,
     marginTop: 10,
     borderRadius: 3,
     color: "#959598",

@@ -31,15 +31,22 @@ const SignIn = ({ navigation }) => {
               height: "100%",
             }}
           >
-            <Image
-              style={{ width: 320, height: 230 }}
-              source={require("../../assets/createAccount.png")}
-            />
+            {colors.background == "white" ? (
+              <Image
+                style={{ width: 320, height: 230 }}
+                source={require("../../assets/createAccount.png")}
+              />
+            ) : (
+              <Image
+                style={{ width: 320, height: 230 }}
+                source={require("../../assets/createAccountDark.png")}
+              />
+            )}
 
             <Text
               style={{
                 paddingTop: 30,
-                fontSize: 30,
+                fontSize: 25,
                 fontWeight: 500,
                 color: colors.text,
                 paddingBottom: 20,
@@ -47,31 +54,39 @@ const SignIn = ({ navigation }) => {
             >
               Sign In
             </Text>
-            <TextInput style={styles.textInput} placeholder="Your email" />
-            <TextInput style={styles.textInput} placeholder="Your password" />
+            <TextInput
+              style={[styles.textInput, { color: colors.placeholder }]}
+              placeholder="Your email"
+              placeholderTextColor={colors.placeholder}
+            />
+            <TextInput
+              style={[styles.textInput, { color: colors.placeholder }]}
+              placeholderTextColor={colors.placeholder}
+              placeholder="Your password"
+            />
             <TouchableOpacity
               style={styles.button}
               onPress={() => navigation.replace("Home")}
             >
-              <Text style={{ color: "white", fontSize: 18 }}>Sign in</Text>
+              <Text style={{ color: "white", fontSize: 15 }}>Sign in</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{ paddingTop: 20 }}
               onPress={() => navigation.navigate("ResetPassword")}
             >
-              <Text style={{ color: "#959598", fontSize: 20 }}>
+              <Text style={{ color: "#959598", fontSize: 15 }}>
                 Forgot Password?
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{ paddingTop: 20 }}
+              style={{ paddingTop: 10 }}
               onPress={() => navigation.navigate("CreateAccount")}
             >
               <Text
-                style={{ color: "#959598", fontSize: 20, paddingBottom: 20 }}
+                style={{ color: "#959598", fontSize: 15, paddingBottom: 0 }}
               >
                 Dont have an Account?
-                <Text style={{ color: "#2DA6FF" }}>Sign Up</Text>
+                <Text style={{ color: "#2DA6FF" }}> Sign Up</Text>
               </Text>
             </TouchableOpacity>
           </View>
@@ -89,10 +104,9 @@ const styles = StyleSheet.create({
     width: "90%",
     height: 45,
     padding: 10,
-    fontSize: 18,
+    fontSize: 13,
     marginTop: 10,
     borderRadius: 3,
-    color: "#959598",
   },
   button: {
     display: "flex",

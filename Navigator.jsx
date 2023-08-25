@@ -11,6 +11,9 @@ import ResetPassword from "./screens/Registration/ResetPassword";
 import Confirmation from "./screens/Registration/Confirmation";
 import NewPassword from "./screens/Registration/NewPassword";
 import Home from "./screens/Home/Home";
+import Profile from "./screens/Profile/Profile";
+import EditProfile from "./screens/Profile/EditProfile";
+import Tour from "./screens/Home/Tour";
 
 const Navigator = () => {
   const Stack = createNativeStackNavigator();
@@ -35,6 +38,8 @@ const Navigator = () => {
       text: "white",
       border: "blue",
       notification: "green",
+      placeholder: "#959598",
+      shadowColor: "#0094FF",
     },
   };
   const light = {
@@ -46,6 +51,8 @@ const Navigator = () => {
       text: "black",
       border: "blue",
       notification: "green",
+      placeholder: "#959598",
+      shadowColor: "#171717",
     },
   };
   //  Getting themes
@@ -104,6 +111,21 @@ const Navigator = () => {
           <Stack.Screen
             name="Home"
             component={Home}
+            options={{ title: null, headerShown: false }}
+          />
+          <Stack.Screen
+            name="Profile"
+            component={Profile}
+            options={{ title: null, headerShown: false }}
+          />
+          <Stack.Screen
+            name="EditProfile"
+            component={EditProfile}
+            options={{ title: null, headerShown: false }}
+          />
+          <Stack.Screen
+            name="Tour"
+            component={Tour}
             options={{ title: null, headerShown: false }}
           />
         </Stack.Navigator>
